@@ -162,9 +162,9 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 
 
-TWILIO_SID='ACdb51f22c3b8848b59a1c806a6ded61a2'
-TWILIO_AUTH_TOKEN='7f1fcb3fda9a0ec133a53f6ca422483e'
-TWILIO_SENDER_PHONE='+16678680492'
+TWILIO_SID=config('TWILIO_SID')
+TWILIO_AUTH_TOKEN=config('TWILIO_AUTH_TOKEN')
+TWILIO_SENDER_PHONE=config('TWILIO_SENDER_PHONE')
 
 CKEDITOR_UPLOAD_PATH = "uploads/"  # Optional: define the upload path for media files
 CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'  # Optional: provide the URL to jQuery
