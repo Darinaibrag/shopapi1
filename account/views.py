@@ -6,6 +6,7 @@ from rest_framework.views import APIView, View
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 from account.send_email import send_confirmation_email
+from shopAPI.tasks import send_confirmation_email_task
 from account.serializers import RegisterSerializer, ActivationSerializer, UserSerializer, RegisterPhoneSerializer
 
 User = get_user_model()
@@ -19,8 +20,10 @@ class RegistrationView(APIView):
         user = serializer.save()
         if user:
             try:
-                send_confirmation_email(user.email,
-                                        user.activation_code)
+                # send_confirmation_email(user.email,
+                #                         user.activation_code)
+                send_confirmation_email_task.delay(user.email,
+                                                   user.activation_code)
             except:
                 return Response({'message': 'Зарегистрировался, но на почту код не отправился'
                                  ,'data': serializer.data}, status=201)
